@@ -29,7 +29,7 @@ module Enumerable
       if block_given?
         total += 1 if block.call(obj)
       else
-        if item.nil?
+        unless item.nil?
           total += 1 if obj == item
         else
           total += 1
