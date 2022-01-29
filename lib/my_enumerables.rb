@@ -1,35 +1,59 @@
 module Enumerable
   # Your code goes here
   def my_each_with_index
-    size.times do |i|
-      yield at(i), i
+    i = 0
+    my_each do |obj|
+      yield obj, i
+      i += 1
     end
     return self
   end
 
-  # def my_
-  # end
+  def my_all?(&block)
+    my_each do |obj|
+      return false unless block.call(obj)
+    end
+    return true
+  end
 
-  # def my_
-  # end
+  def my_any?(&block)
+    my_each do |obj|
+      return true if block.call(obj)
+    end
+    return false
+  end
 
-  # def my_
-  # end
+  def my_count(item=nil, &block)
+    total = 0
+    my_each do |obj|
+      if block_given?
+        total += 1 if block.call(obj)
+      else
+        if item != nil
+          total += 1 if obj == item
+        else
+          total += 1
+        end
+      end
+    end
+    return total
+  end
 
-  # def my_
-  # end
+  def my_inject
+  end
 
-  # def my_
-  # end
+  def my_map
+  end
 
-  # def my_
-  # end
+  def my_none?(&block)
+    my_each do |obj|
+      return false if block.call(obj)
+    end
+    return true
+  end
 
-  # def my_
-  # end
-
-  # def my_
-  # end
+  def my_select
+  end
 
 end
 
